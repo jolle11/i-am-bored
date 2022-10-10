@@ -6,7 +6,7 @@ const Activity = () => {
   const location = useLocation();
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <WantAnother />
       <ActivityResult data={location.state} />
     </div>

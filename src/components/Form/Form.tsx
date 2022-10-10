@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const types: String[] = [
+import { capitalizeFirstLetter } from "../../utils";
+
+const types: string[] = [
   "education",
   "recreational",
   "social",
@@ -14,10 +16,10 @@ const types: String[] = [
 ];
 
 type Values = {
-  participants?: Number;
-  type?: String;
-  price?: Number;
-  accessibility?: Number;
+  participants?: number;
+  type?: string;
+  price?: number;
+  accessibility?: number;
 };
 
 const Form = () => {
@@ -29,19 +31,12 @@ const Form = () => {
   });
   const navigate = useNavigate();
 
-  const capitalizeFirstLetter = (string: String) => {
-    return string[0].toUpperCase() + string.slice(1);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    console.log(values);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(values);
-    // console.log("In");
     navigate("/activity", {
       state: {
         participants: values.participants,
@@ -59,9 +54,9 @@ const Form = () => {
     >
       <button className="rounded bg-green-400 p-3">Get something to do</button>
       <legend>Want to be more specific?</legend>
-      <fieldset className="flex justify-between">
+      <fieldset className="flex flex-col items-center justify-between">
         <p>
-          <label htmlFor="participants">Participants</label>
+          <label htmlFor="participants">Participants 👫</label>
           <input
             type="number"
             name="participants"
@@ -71,12 +66,12 @@ const Form = () => {
           />
         </p>
         <p>
-          <label htmlFor="type">Type</label>
+          <label htmlFor="type">Type </label>
           <select name="type" className="border" onChange={handleChange}>
             <option disabled={true} selected={true}>
               Select something
             </option>
-            {types.map((type: String) => {
+            {types.map((type) => {
               return (
                 <option key={type} value={type}>
                   {capitalizeFirstLetter(type)}
@@ -86,24 +81,24 @@ const Form = () => {
           </select>
         </p>
         <p>
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">Price 💰 </label>
           <input
             type="range"
             min="0"
             max="1"
-            step="0.1"
+            step="0.01"
             defaultValue="0"
             name="price"
             onChange={handleChange}
           />
         </p>
         <p>
-          <label htmlFor="accessibility">Accessibility</label>
+          <label htmlFor="accessibility">Accessibility ♿ </label>
           <input
             type="range"
             min="0"
             max="1"
-            step="0.1"
+            step="0.01"
             defaultValue="0"
             name="accessibility"
             onChange={handleChange}
