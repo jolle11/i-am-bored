@@ -1,22 +1,27 @@
 import { useNavigate } from "react-router-dom";
 
-const WantAnother = () => {
+const WantAnother = ({ toggleLoader }) => {
   const navigate = useNavigate();
 
   const handleClickBack = () => {
-    console.log("Back we go");
     navigate("/");
   };
   const handleClickRefresh = () => {
-    window.location.reload();
+    toggleLoader(true);
   };
 
   return (
     <div className="flex items-center justify-center">
-      <button onClick={handleClickBack} className="rounded bg-purple-400 p-3">
+      <button
+        onClick={handleClickBack}
+        className="m-2 rounded-full bg-matchBlue-900 p-3 text-white shadow-xl transition-all hover:bg-matchBlue-1100"
+      >
         Go Back
       </button>
-      <button onClick={handleClickRefresh} className="rounded bg-amber-300 p-3">
+      <button
+        onClick={handleClickRefresh}
+        className="margin-1 rounded-full bg-matchBlue-900 p-3 text-white shadow-xl transition-all hover:bg-matchBlue-1100"
+      >
         I want something else
       </button>
     </div>

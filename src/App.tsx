@@ -4,7 +4,7 @@ import { Home, Activity } from "./pages";
 
 function App() {
   return (
-    <div>
+    <div className="flex h-screen w-screen items-center justify-center bg-yellow-300">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

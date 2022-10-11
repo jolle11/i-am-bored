@@ -1,5 +1,5 @@
-const Title = () => {
-  return <h1 className="p-5 text-7xl sm:text-8xl">I am bored</h1>;
+const Title = ({ title }) => {
+  return <h1 className="p-5 text-center text-5xl sm:text-8xl">{title}</h1>;
 };
 
 export default Title;
