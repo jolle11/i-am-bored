@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { useLocation } from "react-router-dom";
 
-import { WantAnother, ActivityResult } from "../../components";
+import { WantAnother, ActivityResult, Footer } from "../../components";
 
 interface IProps {
   isLoading: boolean;
@@ -21,6 +21,7 @@ const Activity = () => {
         loader={isLoading}
         toggleLoader={setIsLoading}
       />
+      <Footer />
     </div>
   );
 };
