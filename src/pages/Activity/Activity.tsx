@@ -1,9 +1,8 @@
 import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { useLocation } from "react-router-dom";
 
 import { WantAnother, ActivityResult } from "../../components";
-
-import { Dispatch, SetStateAction } from "react";
 
 interface IProps {
   isLoading: boolean;

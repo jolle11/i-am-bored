@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Dispatch, SetStateAction } from "react";
 
 import { Title } from "../../components";
 
 import { capitalizeFirstLetter, removeIcon } from "../../utils";
 
+interface Props {
+  data?: any;
+  loader?: boolean;
+  toggleLoader?: Dispatch<SetStateAction<boolean>>;
+}
+
 type Values = {
   activity: string;
-  participants: number;
+  participants?: number;
   type: string;
-  price: number;
-  accessibility: number;
+  price?: number;
+  accessibility?: number;
   link: string;
 };
 
-const ActivityResult = ({ data, loader, toggleLoader }) => {
+const ActivityResult = ({ data, loader, toggleLoader }: Props) => {
   const { participants, type, price, accessibility } = data;
 
   const [values, setValues] = useState<Values>({
@@ -50,19 +57,6 @@ const ActivityResult = ({ data, loader, toggleLoader }) => {
         console.log(error);
       });
   }, [loader]);
-
-  // if (loader) {
-  //   return (
-  //     <div className="flex items-center justify-center p-10">
-  //       <div
-  //         className="spinner-border inline-block h-20 w-20 animate-spin rounded-full border-4 border-matchBlue-900 text-2xl text-matchBlue-900"
-  //         role="status"
-  //       >
-  //         <span className="visually-hidden">.</span>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   if (values.activity === "" || values.activity === undefined) {
     return (

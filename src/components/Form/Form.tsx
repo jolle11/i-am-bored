@@ -31,7 +31,7 @@ const Form = () => {
   });
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

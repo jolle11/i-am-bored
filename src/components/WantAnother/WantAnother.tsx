@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
-const WantAnother = ({ toggleLoader }) => {
+interface Props {
+  toggleLoader?: Dispatch<SetStateAction<boolean>>;
+}
+
+const WantAnother = ({ toggleLoader }: Props) => {
   const navigate = useNavigate();
 
   const handleClickBack = () => {
