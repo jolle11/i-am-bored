@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Dispatch, SetStateAction } from "react";
 
 import { Title } from "../../components";
 
@@ -9,7 +8,7 @@ import { capitalizeFirstLetter, removeIcon } from "../../utils";
 interface Props {
   data?: any;
   loader?: boolean;
-  toggleLoader?: Dispatch<SetStateAction<boolean>>;
+  toggleLoader?: any;
 }
 
 type Values = {
