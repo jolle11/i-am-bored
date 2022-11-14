@@ -1,7 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({
-  reducer: {},
+import activityReducer from "../features/activities/activitySlice";
+import { apiSlice } from "../features/activities/activityApiSlice";
+
+export const store = configureStore({
+	reducer: {
+		activity: activityReducer,
+		[apiSlice.reducerPath]: apiSlice.reducer,
+	},
+	middleware: (getDefaultMiddleware) => {
+		return getDefaultMiddleware().concat(apiSlice.middleware);
+	},
 });
 
 export type RootState = ReturnType<typeof store.getState>;
