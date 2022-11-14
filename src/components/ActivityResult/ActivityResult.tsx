@@ -1,113 +1,65 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useAppSelector } from "../../app/hooks";
+
+import { useFetchActivitiesQuery } from "../../features/activities/activityApiSlice";
 
 import { Title } from "../../components";
 
-import { capitalizeFirstLetter, removeIcon } from "../../utils";
+import { capitalizeFirstLetter } from "../../utils";
 
-interface Props {
-  data?: any;
-  loader?: boolean;
-  toggleLoader?: any;
-}
+const ActivityResult = () => {
+	const activity = useAppSelector((state) => state.activity);
 
-type Values = {
-  activity: string;
-  participants?: number;
-  type: string;
-  price?: number;
-  accessibility?: number;
-  link: string;
-};
+	const { data = {}, isFetching } = useFetchActivitiesQuery({
+		participants: activity.participants!,
+		type: activity.type,
+		price: activity.price!,
+		accessibility: activity.accessibility!,
+	});
 
-const ActivityResult = ({ data, loader, toggleLoader }: Props) => {
-  const { participants, type, price, accessibility } = data;
+	return (
+		<>
+			<Title title={"Not anymore"} />
+			{isFetching && (
+				<div className="flex items-center justify-center p-10">
+					<div
+						className="spinner-border inline-block h-20 w-20 animate-spin rounded-full border-4 border-matchBlue-900 text-2xl text-matchBlue-900"
+						role="status"
+					>
+						<span className="visually-hidden">.</span>
+					</div>
+				</div>
+			)}
+			{(data.activity === "" && !isFetching) ||
+				(data.activity === undefined && !isFetching && (
+					<div>
+						<p className="p-5 text-center">No activity found with the specified parameters</p>
+					</div>
+				))}
 
-  const [values, setValues] = useState<Values>({
-    activity: "",
-    participants: undefined,
-    type: "",
-    price: undefined,
-    accessibility: undefined,
-    link: "",
-  });
-
-  const url = `https://www.boredapi.com/api/activity?type=${removeIcon(
-    type
-  )}&participants=${participants === undefined ? "" : participants}&price=${
-    price === undefined ? "" : price
-  }&accessibility=${accessibility === undefined ? "" : accessibility}`;
-
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setValues({
-          activity: response.data.activity,
-          participants: response.data.participants,
-          type: response.data.type,
-          price: response.data.price,
-          accessibility: response.data.accessibility,
-          link: response.data.link,
-        });
-        toggleLoader(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [loader]);
-
-  if (values.activity === "" || values.activity === undefined) {
-    return (
-      <p className="p-5 text-center">
-        No activity found with the specified parameters
-      </p>
-    );
-  }
-  return (
-    <>
-      <Title title={"Not anymore"} />
-      {loader && (
-        <div className="flex items-center justify-center p-10">
-          <div
-            className="spinner-border inline-block h-20 w-20 animate-spin rounded-full border-4 border-matchBlue-900 text-2xl text-matchBlue-900"
-            role="status"
-          >
-            <span className="visually-hidden">.</span>
-          </div>
-        </div>
-      )}
-      {!loader && (
-        <div className="m-3 flex flex-col items-center justify-center rounded-xl border-4 border-solid border-matchBlue-900 bg-yellow-200 p-3">
-          <h1 className="p-2 text-center sm:text-3xl">{values.activity}</h1>
-          <div className="flex flex-col items-center justify-between">
-            <p className="p-2 text-center">
-              Participants 👫 {values.participants && values.participants}
-            </p>
-            <p className="p-2 text-center">
-              Type 👉 {values.type && capitalizeFirstLetter(values.type)}
-            </p>
-            <p className="p-2 text-center">
-              Price 💰 {values.price && values.price}
-            </p>
-            <p className="p-2 text-center">
-              Accessibility ♿ {values.accessibility && values.accessibility}
-            </p>
-            {values.link && (
-              <a
-                className="p-2 text-center"
-                href={values.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Start here
-              </a>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
+			{!isFetching && data.activity !== "" && data.activity !== undefined && (
+				<div className="m-3 flex flex-col items-center justify-center rounded-xl border-4 border-solid border-matchBlue-900 bg-yellow-200 p-3">
+					<h1 className="p-2 text-center sm:text-3xl">{data.activity}</h1>
+					<div className="flex flex-col items-center justify-between">
+						<p className="p-2 text-center">
+							Participants 👫 {data.participants && data.participants}
+						</p>
+						<p className="p-2 text-center">
+							Type 👉 {data.type && capitalizeFirstLetter(data.type)}
+						</p>
+						<p className="p-2 text-center">Price 💰 {data.price && data.price}</p>
+						<p className="p-2 text-center">
+							Accessibility ♿ {data.accessibility && data.accessibility}
+						</p>
+						{data.link && (
+							<a className="p-2 text-center" href={data.link} target="_blank" rel="noreferrer">
+								Start here
+							</a>
+						)}
+					</div>
+				</div>
+			)}
+		</>
+	);
 };
 
 export default ActivityResult;
