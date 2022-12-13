@@ -1,4 +1,4 @@
-import { WantAnother, ActivityResult, Footer } from "../../components";
+import { ActivityResult, Footer, WantAnother } from "../../components";
 
 const Activity = () => {
 	return (

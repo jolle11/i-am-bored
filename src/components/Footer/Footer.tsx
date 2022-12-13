@@ -1,7 +1,7 @@
-import { VscGithubInverted, VscTwitter } from "react-icons/vsc";
+import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { SiHashnode } from "react-icons/si";
-import { AiFillInstagram } from "react-icons/ai";
+import { VscGithubInverted, VscTwitter } from "react-icons/vsc";
 
 const Footer = () => {
 	return (

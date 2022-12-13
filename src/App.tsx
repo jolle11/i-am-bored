@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Home, Activity } from "./pages";
+import { Activity, Home } from "./pages";
 
 function App() {
 	return (

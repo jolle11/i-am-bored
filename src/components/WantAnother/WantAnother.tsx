@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { reset } from "../../features/activities/activitySlice";
+import { useNavigate } from "react-router-dom";
 
 import { useFetchActivitiesQuery } from "../../features/activities/activityApiSlice";
 

@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 
 import {
-	setParticipants,
-	setType,
-	setPrice,
 	setAccessibility,
+	setParticipants,
+	setPrice,
+	setType,
 } from "../../features/activities/activitySlice";
 
 import { capitalizeFirstLetter } from "../../utils";

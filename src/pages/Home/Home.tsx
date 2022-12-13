@@ -1,4 +1,4 @@
-import { Title, Form, Footer } from "../../components";
+import { Footer, Form, Title } from "../../components";
 
 const Home = () => {
 	const title: string = "I am bored";
