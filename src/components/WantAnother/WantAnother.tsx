@@ -28,12 +28,14 @@ const WantAnother = () => {
     return (
         <div className="flex items-center justify-center">
             <button
+                type="button"
                 onClick={handleClickBack}
                 className="m-2 rounded-full bg-matchBlue-900 p-3 text-white shadow-xl transition-all hover:bg-matchBlue-1100"
             >
                 Go Back
             </button>
             <button
+                type="button"
                 onClick={handleRefetchOne}
                 className="margin-1 rounded-full bg-matchBlue-900 p-3 text-white shadow-xl transition-all hover:bg-matchBlue-1100"
             >
