@@ -1,7 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-
-import { apiSlice } from "../features/activities/activityApiSlice";
-import activityReducer from "../features/activities/activitySlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { apiSlice } from '../features/activities/activityApiSlice';
+import activityReducer from '../features/activities/activitySlice';
 
 export const store = configureStore({
 	reducer: {

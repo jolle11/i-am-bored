@@ -1,7 +1,6 @@
-import type { RootState } from "../../app/store";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-import { removeIcon } from "../../utils";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '../../app/store';
+import { removeIcon } from '../../utils';
 
 interface ActivityFilters {
 	participants?: number;
@@ -12,13 +11,13 @@ interface ActivityFilters {
 
 const initialState: ActivityFilters = {
 	participants: undefined,
-	type: "",
+	type: '',
 	price: undefined,
 	accessibility: undefined,
 };
 
 const activitySlice = createSlice({
-	name: "activity",
+	name: 'activity',
 	initialState,
 	reducers: {
 		setParticipants(state, action: PayloadAction<number>) {

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface Activity {
 	activity: string;
@@ -11,9 +11,9 @@ interface Activity {
 }
 
 export const apiSlice = createApi({
-	reducerPath: "api",
+	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://www.boredapi.com/api/",
+		baseUrl: 'https://www.boredapi.com/api/',
 	}),
 	endpoints(builder) {
 		return {
@@ -26,7 +26,12 @@ export const apiSlice = createApi({
 					accessibility: number;
 				}
 			>({
-				query({ type = "", participants = "", price = "", accessibility = "" }) {
+				query({
+					type = '',
+					participants = '',
+					price = '',
+					accessibility = '',
+				}) {
 					return `/activity?type=${type}&participants=${participants}&price=${price}&accessibility=${accessibility}`;
 				},
 			}),
